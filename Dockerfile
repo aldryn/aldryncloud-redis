@@ -1,6 +1,7 @@
 FROM redis:3.0-alpine
 
-RUN echo '#!/bin/bash\necho "requirepass ${PASSWORD}\ndir /data" | redis-server -' > /run.sh
-RUN chmod +x /run.sh
+RUN apk add --no-cache gettext
 
-CMD ["/run.sh"]
+COPY docker-entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["redis-server", "-"]
