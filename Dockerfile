@@ -8,4 +8,6 @@ ENTRYPOINT ["/entrypoint.sh"]
 ENV DATADIR=/data DATABASES=16 APPENDONLY=no
 COPY redis.conf /etc/redis.conf
 
+STOPSIGNAL SIGINT
+
 CMD ["redis-server", "-"]
